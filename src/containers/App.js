@@ -1,9 +1,8 @@
-
-import CardList from './CardList';
-import { folks } from './folks';
-import SearchBox from './SearchBox';
 import React, { Component } from 'react';
- 
+import CardList from '../components/CardList';
+import SearchBox from '../components/SearchBox';
+import Scroll from '../components/Scroll';
+import './App.css';
 
 class App extends Component {
   constructor() {
@@ -26,18 +25,18 @@ class App extends Component {
 
   render() {
     const { folks, searchfield } = this.state;
-    const filteredfolks = folks.filter(folk =>{
+    const filteredFolks = folks.filter(folk =>{
       return folk.name.toLowerCase().includes(searchfield.toLowerCase());
     })
     return !folks.length ?
       <h1>Loading</h1> :
       (
         <div className='tc'>
-          <h1 className='f1'>RoboFriends</h1>
+          <h1 className='f1'>Cyber.folks</h1>
           <SearchBox searchChange={this.onSearchChange}/>
-         {/* <Scroll>
-            <CardList folks={filteredRobots} />
-          </Scroll>*/}
+          <Scroll>
+            <CardList folks={filteredFolks} />
+          </Scroll>
         </div>
       );
   }
